@@ -302,13 +302,10 @@
 			var slideshowItemEls = document.getElementsByClassName("slideshowItem");
 			
 			slideshowItemEls[showingIndex].style.opacity= 1;
-            slideshowItemEls[showingIndex].style.zIndex= 1;
         
 			var nextPlace = function(){
                 var opacity = 1;
-                var currentZIndex = 1;
 				slideshowItemEls[showingIndex].style.opacity= opacity;
-                slideshowItemEls[showingIndex].style.zIndex= currentZIndex;
                 var nextIndex = showingIndex + 1;
                 //find next index
 				if(nextIndex===slideshowItemEls.length){
@@ -316,17 +313,12 @@
 				}
 				var timer = setInterval(function(){
                     opacity -= 0.1;
-                    currentZIndex -= 0.1;
                     slideshowItemEls[showingIndex].style.opacity= opacity;
                     slideshowItemEls[nextIndex].style.opacity= 1 - opacity;
-                    slideshowItemEls[showingIndex].style.zIndex= currentZIndex;
-                    slideshowItemEls[nextIndex].style.zIndex= 1 - currentZIndex;
                     if(opacity < 0.1){
                         clearInterval(timer);
                         slideshowItemEls[showingIndex].style.opacity= 0;
                         slideshowItemEls[nextIndex].style.opacity= 1;
-                        slideshowItemEls[showingIndex].style.zIndex= 0;
-                        slideshowItemEls[nextIndex].style.zIndex= 1;
                         showingIndex = nextIndex;
                     }
                 },100);
@@ -340,9 +332,7 @@
 			
 			var previousPlace = function(){
 				var opacity = 1;
-                var currentZIndex = 1;
 				slideshowItemEls[showingIndex].style.opacity= opacity;
-                slideshowItemEls[showingIndex].style.zIndex= currentZIndex;
                 var previousIndex = showingIndex - 1;
                 //find next index
 				if(previousIndex < 0){
